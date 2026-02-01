@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Matheus R. Fonseca</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23d4af37%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z%22/><line x1=%226%22 y1=%2217%22 x2=%2218%22 y2=%2217%22/></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        chef: {
+                            gold: '#d4af37',
+                            dark: '#0c0a09',
+                            stone: '#1c1917',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0c0a09;
+            color: #e7e5e4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .cv-paper {
+            background: #ffffff;
+            color: #1c1917;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #d4af37 0%, #fcd34d 100%);
+        }
+
+        .section-divider {
+            border-bottom: 2px solid #e7e5e4;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Timeline effects */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e7e5e4;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; padding: 0 !important; }
+            .cv-paper { 
+                box-shadow: none !important; 
+                margin: 0 !important; 
+                width: 100% !important; 
+                max-width: 100% !important;
+                color: black !important;
+            }
+            .text-chef-gold { color: #8a6d1a !important; } /* Darker gold for print */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-cv { animation: fadeIn 0.8s ease-out forwards; }
+    </style>
+</head>
+<body class="p-4 md:p-12 font-sans">
+
+    <!-- Top Navigation Bar -->
+    <div class="max-w-5xl mx-auto mb-8 flex justify-between items-center no-print animate-cv">
+        <a href="#" onclick="window.history.back()" class="flex items-center gap-2 text-stone-400 hover:text-chef-gold transition-colors font-medium">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Blog
+        </a>
+        <div class="flex gap-4">
+            <button onclick="window.print()" class="gold-gradient-bg text-chef-dark px-6 py-2.5 rounded-full font-bold shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                <i data-lucide="download" class="w-4 h-4"></i> Salvar PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Main CV Container -->
+    <main class="max-w-5xl mx-auto cv-paper rounded-sm overflow-hidden animate-cv" style="animation-delay: 0.2s;">
+        
+        <!-- Header / Banner -->
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="md:col-span-2 p-8 md:p-12 bg-chef-dark text-white flex flex-col justify-center">
+                <div class="inline-block px-3 py-1 mb-4 border border-chef-gold/30 rounded-full bg-chef-gold/10 w-fit">
+                    <span class="text-chef-gold text-xs font-bold tracking-widest uppercase">Gastronomia Profissional</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-4 tracking-tight">
+                    Matheus <br> <span class="text-chef-gold italic">Fonseca</span>
+                </h1>
+                <p class="text-stone-400 text-lg md:text-xl font-display max-w-md leading-relaxed">
+                    Transformando ingredientes em memórias através de técnica, ritmo e paixão.
+                </p>
+            </div>
+            
+            <!-- Contact Sidebar on Header -->
+            <div class="p-8 md:p-12 bg-chef-stone text-stone-300 flex flex-col justify-center gap-4 text-sm border-l border-white/5">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    </div>
+                    <span>Belo Horizonte, MG</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </div>
+                    <span>rmatheusfonseca@gmail.com</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                    </div>
+                    <span>(31) 99715-0746</span>
+                </div>
+                <a href="https://bit.ly/theuportfolio" target="_blank" class="flex items-center gap-3 hover:text-chef-gold transition-colors">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                    </div>
+                    <span>bit.ly/theuportfolio</span>
+                </a>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </div>
+                    <span>@cheftheu</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12">
+            
+            <!-- Left Column: Experience -->
+            <div class="md:col-span-8 p-8 md:p-12 border-r border-stone-100">
+                
+                <!-- Summary -->
+                <section class="mb-12">
+                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Perfil Profissional</h2>
+                    <p class="text-stone-600 leading-relaxed text-justify">
+                        Cozinheiro apaixonado pela cultura alimentar mineira, com especialização em massas artesanais e experiência em operações de alta pressão. Estudante de Gastronomia, combino o rigor técnico da "Mise en Place" com a criatividade necessária para elevar sabores clássicos. Focado em organização, limpeza e no trabalho harmonioso em equipe.
+                    </p>
+                </section>
+
+                <!-- Experience -->
+                <section>
+                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Trajetória Profissional</h2>
+                    
+                    <div class="space-y-10 timeline-line relative pl-10">
+                        
+                        <!-- Item 1 -->
+                        <div class="relative">
+                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-chef-gold border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="text-xl font-bold text-stone-900">Pastaio</h3>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2023 - Presente</span>
+                            </div>
+                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Cozinheiro Estagiário (Especialista em Massas)</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Produção diária de massas frescas (longas, curtas e recheadas). Responsável pela praça de massas e controle de qualidade dos insumos artesanais.
+                            </p>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative">
+                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="text-xl font-bold text-stone-900">Rex Bibendi</h3>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2023</span>
+                            </div>
+                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Cozinheiro (Praça Quente)</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Atuação em ambiente de alta gastronomia, operando grelhas e fogões em serviço á la carte. Foco em carnes nobres e guarnições contemporâneas.
+                            </p>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative">
+                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="text-xl font-bold text-stone-900">Coco Bambu</h3>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2022</span>
+                            </div>
+                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Auxiliar de Cozinha</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Operação em cozinha de alto volume. Especialização em preparo e limpeza de frutos do mar, garantindo a padronização de pratos para grandes fluxos.
+                            </p>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="relative">
+                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="text-xl font-bold text-stone-900">Sorvetes Recreio</h3>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2017 - 2022</span>
+                            </div>
+                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Gestão Operacional & Atendimento</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Cinco anos dedicados à excelência no atendimento, gestão de caixa e organização logística do estabelecimento.
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Skills & Education -->
+            <div class="md:col-span-4 p-8 md:p-12 bg-stone-50">
+                
+                <!-- Education -->
+                <section class="mb-12">
+                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Educação</h2>
+                    <div>
+                        <h3 class="font-bold text-stone-900">Graduação em Gastronomia</h3>
+                        <p class="text-sm text-stone-500">Centro Universitário UNA</p>
+                        <p class="text-xs font-bold text-chef-gold mt-1 uppercase tracking-tighter">Previsão de Conclusão: 2025</p>
+                    </div>
+                </section>
+
+                <!-- Technical Skills -->
+                <section class="mb-12">
+                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Arsenal Técnico</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Massas Frescas</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Cozinha Quente</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Mise en Place</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Frutos do Mar</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Higiene & Segurança</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Panificação</span>
+                    </div>
+                </section>
+
+                <!-- Soft Skills -->
+                <section class="mb-12">
+                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Diferenciais</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-sm text-stone-600">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
+                            Trabalho sob pressão
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-stone-600">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
+                            Foco em padronização
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-stone-600">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
+                            Agilidade e ritmo
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-stone-600">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
+                            Espírito de equipa
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Languages -->
+                <section>
+                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Idiomas</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-stone-800">Português</span>
+                            <span class="text-[10px] text-chef-gold font-bold uppercase">Nativo</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-stone-800">Inglês</span>
+                            <span class="text-[10px] text-stone-400 font-bold uppercase">Básico</span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="p-8 md:p-12 text-center border-t border-stone-100 text-stone-400 text-[10px] uppercase tracking-widest">
+            © 2025 Matheus Rodrigues da Fonseca • <a href="https://bit.ly/theuportfolio" target="_blank" class="hover:text-chef-gold transition-colors">bit.ly/theuportfolio</a> • Disponível para novas oportunidades gastronómicas.
+        </footer>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
