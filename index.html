@@ -51,11 +51,11 @@
 
         .section-divider {
             border-bottom: 2px solid #f5f5f4;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            padding-bottom: 0.25rem;
+            margin-bottom: 1rem;
         }
 
-        /* Linha do tempo */
+        /* Linha do tempo compacta */
         .timeline-line::before {
             content: '';
             position: absolute;
@@ -66,7 +66,7 @@
             background: #f5f5f4;
         }
 
-        /* --- AJUSTES CRÍTICOS PARA PDF --- */
+        /* --- AJUSTES CRÍTICOS PARA PDF DE PÁGINA ÚNICA --- */
         @media print {
             @page {
                 size: A4;
@@ -77,10 +77,10 @@
                 background: white !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                /* Força o navegador a imprimir cores de fundo e imagens */
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color: #1c1917 !important;
+                font-size: 11pt; /* Ajuste de escala de fonte para impressão */
             }
 
             .no-print {
@@ -93,9 +93,9 @@
                 width: 100% !important;
                 max-width: 100% !important;
                 border-radius: 0 !important;
+                height: 100vh; /* Força a ocupar a página */
             }
 
-            /* Garante que o cabeçalho escuro apareça escuro no papel */
             .bg-chef-dark {
                 background-color: #0c0a09 !important;
                 color: white !important;
@@ -111,11 +111,14 @@
                 background-color: #fafaf9 !important;
             }
             
-            /* Ajuste de links para não mostrar URL ao lado no print */
             a::after { content: none !important; }
+
+            /* Ajuste de espaçamento para caber no A4 */
+            .p-8, .p-12 { padding: 1.5rem !important; }
+            .mb-12 { margin-bottom: 1.5rem !important; }
+            .space-y-10 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem !important; }
         }
 
-        /* Animações apenas para visualização em tela */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -123,16 +126,16 @@
         .animate-cv { animation: fadeIn 0.8s ease-out forwards; }
     </style>
 </head>
-<body class="p-4 md:p-12 font-sans">
+<body class="p-4 md:p-6 lg:p-10 font-sans">
 
     <!-- Top Navigation Bar -->
-    <div class="max-w-5xl mx-auto mb-8 flex justify-between items-center no-print animate-cv">
+    <div class="max-w-5xl mx-auto mb-6 flex justify-between items-center no-print animate-cv">
         <button onclick="window.history.back()" class="flex items-center gap-2 text-stone-400 hover:text-chef-gold transition-colors font-medium">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Portfólio
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar
         </button>
         <div class="flex gap-4">
-            <button onclick="window.print()" class="bg-[#d4af37] text-chef-dark px-6 py-2.5 rounded-full font-bold shadow-lg hover:scale-105 transition-all flex items-center gap-2">
-                <i data-lucide="printer" class="w-4 h-4"></i> Imprimir / PDF
+            <button onclick="window.print()" class="bg-[#d4af37] text-chef-dark px-6 py-2 rounded-full font-bold shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                <i data-lucide="printer" class="w-4 h-4"></i> Imprimir / PDF Única Página
             </button>
         </div>
     </div>
@@ -140,49 +143,49 @@
     <!-- Main CV Container -->
     <main class="max-w-5xl mx-auto cv-paper rounded-sm overflow-hidden animate-cv" style="animation-delay: 0.2s;">
         
-        <!-- Header / Banner -->
+        <!-- Header / Banner Compacto -->
         <div class="grid grid-cols-1 md:grid-cols-3">
-            <div class="md:col-span-2 p-8 md:p-12 bg-chef-dark text-white flex flex-col justify-center">
-                <div class="inline-block px-3 py-1 mb-4 border border-chef-gold/30 rounded-full bg-chef-gold/10 w-fit">
-                    <span class="text-chef-gold text-xs font-bold tracking-widest uppercase">Gastronomia Profissional</span>
+            <div class="md:col-span-2 p-6 md:p-10 bg-chef-dark text-white flex flex-col justify-center">
+                <div class="inline-block px-3 py-0.5 mb-3 border border-chef-gold/30 rounded-full bg-chef-gold/10 w-fit">
+                    <span class="text-chef-gold text-[10px] font-bold tracking-widest uppercase">Gastronomia Profissional</span>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-4 tracking-tight">
+                <h1 class="text-4xl md:text-6xl font-serif font-bold mb-3 tracking-tight leading-none">
                     Matheus <br> <span class="text-chef-gold italic">Fonseca</span>
                 </h1>
-                <p class="text-stone-400 text-lg md:text-xl font-display max-w-md leading-relaxed">
+                <p class="text-stone-400 text-base md:text-lg font-display max-w-md leading-relaxed">
                     Transformando ingredientes em memórias através de técnica, ritmo e paixão.
                 </p>
             </div>
             
-            <!-- Sidebar de Contato (Escura para manter o visual premium) -->
-            <div class="p-8 md:p-12 bg-chef-stone text-stone-300 flex flex-col justify-center gap-4 text-sm border-l border-white/5">
+            <!-- Sidebar de Contato -->
+            <div class="p-6 md:p-10 bg-chef-stone text-stone-300 flex flex-col justify-center gap-3 text-xs border-l border-white/5">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <div class="w-7 h-7 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
                     </div>
                     <span>Belo Horizonte, MG</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    <div class="w-7 h-7 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="mail" class="w-3.5 h-3.5"></i>
                     </div>
                     <span>rmatheusfonseca@gmail.com</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
-                        <i data-lucide="phone" class="w-4 h-4"></i>
+                    <div class="w-7 h-7 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="phone" class="w-3.5 h-3.5"></i>
                     </div>
                     <span>(31) 99715-0746</span>
                 </div>
                 <a href="https://bit.ly/theuportfolio" target="_blank" class="flex items-center gap-3 hover:text-chef-gold transition-colors group">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold group-hover:bg-chef-gold/20 transition-all">
-                        <i data-lucide="globe" class="w-4 h-4"></i>
+                    <div class="w-7 h-7 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold group-hover:bg-chef-gold/20 transition-all">
+                        <i data-lucide="globe" class="w-3.5 h-3.5"></i>
                     </div>
-                    <span>bit.ly/theuportfolio</span>
+                    <span class="font-medium text-chef-gold">bit.ly/theuportfolio</span>
                 </a>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
-                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    <div class="w-7 h-7 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
+                        <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
                     </div>
                     <span>@cheftheu</span>
                 </div>
@@ -191,70 +194,70 @@
 
         <div class="grid grid-cols-1 md:grid-cols-12">
             
-            <!-- Coluna Principal (Experiências) -->
-            <div class="md:col-span-8 p-8 md:p-12 border-r border-stone-100">
+            <!-- Coluna Principal -->
+            <div class="md:col-span-8 p-6 md:p-10 border-r border-stone-100">
                 
-                <section class="mb-12">
-                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Perfil Profissional</h2>
-                    <p class="text-stone-600 leading-relaxed text-justify">
-                        Cozinheiro apaixonado pela cultura alimentar mineira, com especialização em massas artesanais e experiência em operações de alta pressão. Estudante de Gastronomia, combino o rigor técnico da "Mise en Place" com a criatividade necessária para elevar sabores clássicos. Focado em organização, limpeza e no trabalho harmonioso em equipe.
+                <section class="mb-8">
+                    <h2 class="section-divider font-display text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Perfil Profissional</h2>
+                    <p class="text-stone-600 leading-relaxed text-sm text-justify">
+                        Cozinheiro apaixonado pela cultura alimentar mineira, com especialização em massas artesanais e experiência em operações de alta pressão. Estudante de Gastronomia, combino o rigor técnico da "Mise en Place" com a criatividade necessária para elevar sabores clássicos. Focado em organização, limpeza e no trabalho harmonioso em equipa.
                     </p>
                 </section>
 
                 <section>
-                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Trajetória Profissional</h2>
+                    <h2 class="section-divider font-display text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Trajetória Profissional</h2>
                     
-                    <div class="space-y-10 timeline-line relative pl-10">
+                    <div class="space-y-6 timeline-line relative pl-8">
                         
                         <!-- Pastaio -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-chef-gold border-4 border-white z-10"></div>
-                            <div class="flex justify-between items-start mb-1">
-                                <h3 class="text-xl font-bold text-stone-900">Pastaio</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2025</span>
+                            <div class="absolute -left-[2.1rem] top-1.5 w-3.5 h-3.5 rounded-full bg-chef-gold border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <h3 class="text-lg font-bold text-stone-900 leading-tight">Pastaio</h3>
+                                <span class="text-[9px] font-bold bg-stone-100 px-2 py-0.5 rounded-full text-stone-500 uppercase">2025</span>
                             </div>
-                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Cozinheiro Estagiário (Especialista em Massas)</p>
-                            <p class="text-stone-600 text-sm leading-relaxed">
-                                Produção diária de massas frescas (longas, curtas e recheadas). Responsável pela praça de massas e controle de qualidade dos insumos artesanais.
+                            <p class="text-chef-gold font-bold text-[11px] uppercase tracking-wider mb-1">Cozinheiro Estagiário (Especialista em Massas)</p>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Produção diária de massas frescas. Responsável pela praça de massas e controlo de qualidade dos insumos artesanais.
                             </p>
                         </div>
 
                         <!-- Rex -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
-                            <div class="flex justify-between items-start mb-1">
-                                <h3 class="text-xl font-bold text-stone-900">Rex Bibendi</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2025</span>
+                            <div class="absolute -left-[2.1rem] top-1.5 w-3.5 h-3.5 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <h3 class="text-lg font-bold text-stone-900 leading-tight">Rex Bibendi</h3>
+                                <span class="text-[9px] font-bold bg-stone-100 px-2 py-0.5 rounded-full text-stone-500 uppercase">2025</span>
                             </div>
-                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Cozinheiro (Praça Quente)</p>
-                            <p class="text-stone-600 text-sm leading-relaxed">
-                                Atuação em ambiente de alta gastronomia, operando grelhas e fogões em serviço á la carte. Foco em carnes nobres e guarnições contemporâneas.
+                            <p class="text-chef-gold font-bold text-[11px] uppercase tracking-wider mb-1">Cozinheiro (Praça Quente)</p>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Atuação em alta gastronomia (á la carte). Foco em carnes nobres, grelhados e guarnições contemporâneas.
                             </p>
                         </div>
 
                         <!-- Coco Bambu -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
-                            <div class="flex justify-between items-start mb-1">
-                                <h3 class="text-xl font-bold text-stone-900">Coco Bambu</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2024</span>
+                            <div class="absolute -left-[2.1rem] top-1.5 w-3.5 h-3.5 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <h3 class="text-lg font-bold text-stone-900 leading-tight">Coco Bambu</h3>
+                                <span class="text-[9px] font-bold bg-stone-100 px-2 py-0.5 rounded-full text-stone-500 uppercase">2024</span>
                             </div>
-                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Auxiliar de Cozinha</p>
-                            <p class="text-stone-600 text-sm leading-relaxed">
-                                Operação em cozinha de alto volume. Especialização em preparo e limpeza de frutos do mar, garantindo a padronização de pratos para grandes fluxos de clientes.
+                            <p class="text-chef-gold font-bold text-[11px] uppercase tracking-wider mb-1">Auxiliar de Cozinha</p>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Operação em alto volume. Especialização em preparo e limpeza de frutos do mar e padronização de pratos.
                             </p>
                         </div>
 
                         <!-- Sorvetes Recreio -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
-                            <div class="flex justify-between items-start mb-1">
-                                <h3 class="text-xl font-bold text-stone-900">Sorvetes Recreio</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2023</span>
+                            <div class="absolute -left-[2.1rem] top-1.5 w-3.5 h-3.5 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="flex justify-between items-start mb-0.5">
+                                <h3 class="text-lg font-bold text-stone-900 leading-tight">Sorvetes Recreio</h3>
+                                <span class="text-[9px] font-bold bg-stone-100 px-2 py-0.5 rounded-full text-stone-500 uppercase">2023</span>
                             </div>
-                            <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Gestão Operacional & Atendimento</p>
-                            <p class="text-stone-600 text-sm leading-relaxed">
-                                Foco na excelência no atendimento ao cliente, gestão de caixa, controle de estoque e organização operacional.
+                            <p class="text-chef-gold font-bold text-[11px] uppercase tracking-wider mb-1">Gestão Operacional & Atendimento</p>
+                            <p class="text-stone-600 text-xs leading-relaxed">
+                                Excelência no atendimento, gestão de caixa, controlo de stock e organização logística.
                             </p>
                         </div>
 
@@ -262,58 +265,58 @@
                 </section>
             </div>
 
-            <!-- Coluna Lateral (Habilidades e Formação) -->
-            <div class="md:col-span-4 p-8 md:p-12 bg-stone-50">
+            <!-- Coluna Lateral -->
+            <div class="md:col-span-4 p-6 md:p-10 bg-stone-50">
                 
-                <section class="mb-12">
-                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Educação</h2>
+                <section class="mb-8">
+                    <h2 class="section-divider font-display text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Educação</h2>
                     <div>
-                        <h3 class="font-bold text-stone-900 leading-tight">Graduação em Gastronomia</h3>
-                        <p class="text-sm text-stone-500 mt-1">Centro Universitário UNA</p>
-                        <p class="text-xs font-bold text-chef-gold mt-2 uppercase">Conclusão: 2026</p>
+                        <h3 class="font-bold text-stone-900 leading-tight text-sm">Graduação em Gastronomia</h3>
+                        <p class="text-[13px] text-stone-500 mt-0.5">Centro Universitário UNA</p>
+                        <p class="text-[10px] font-bold text-chef-gold mt-1 uppercase tracking-tighter">Conclusão: 2026</p>
                     </div>
                 </section>
 
-                <section class="mb-12">
-                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Arsenal Técnico</h2>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Massas Frescas</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Cozinha Quente</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Mise en Place</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Frutos do Mar</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Segurança Alimentar</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Panificação</span>
+                <section class="mb-8">
+                    <h2 class="section-divider font-display text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Arsenal Técnico</h2>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[9px] font-bold uppercase rounded">Massas Frescas</span>
+                        <span class="px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[9px] font-bold uppercase rounded">Cozinha Quente</span>
+                        <span class="px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[9px] font-bold uppercase rounded">Mise en Place</span>
+                        <span class="px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[9px] font-bold uppercase rounded">Frutos do Mar</span>
+                        <span class="px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[9px] font-bold uppercase rounded">Segurança Alimentar</span>
+                        <span class="px-2 py-0.5 bg-white border border-stone-200 text-stone-600 text-[9px] font-bold uppercase rounded">Panificação</span>
                     </div>
                 </section>
 
-                <section class="mb-12">
-                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Diferenciais</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3 text-xs text-stone-600 font-medium">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold flex-shrink-0"></i>
-                            Agilidade em ambientes de alta pressão
+                <section class="mb-8">
+                    <h2 class="section-divider font-display text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Diferenciais</h2>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2.5 text-[11px] text-stone-600 font-medium">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-chef-gold flex-shrink-0"></i>
+                            Agilidade em alta pressão
                         </li>
-                        <li class="flex items-start gap-3 text-xs text-stone-600 font-medium">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold flex-shrink-0"></i>
-                            Rigoroso controle de padronização
+                        <li class="flex items-start gap-2.5 text-[11px] text-stone-600 font-medium">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-chef-gold flex-shrink-0"></i>
+                            Rigorosa padronização
                         </li>
-                        <li class="flex items-start gap-3 text-xs text-stone-600 font-medium">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold flex-shrink-0"></i>
-                            Organização técnica (Mise en Place)
+                        <li class="flex items-start gap-2.5 text-[11px] text-stone-600 font-medium">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-chef-gold flex-shrink-0"></i>
+                            Organização técnica
                         </li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Idiomas</h2>
-                    <div class="space-y-4">
+                    <h2 class="section-divider font-display text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Idiomas</h2>
+                    <div class="space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-bold text-stone-800">Português</span>
-                            <span class="text-[10px] text-chef-gold font-bold uppercase tracking-tighter">Nativo</span>
+                            <span class="text-xs font-bold text-stone-800">Português</span>
+                            <span class="text-[9px] text-chef-gold font-bold uppercase tracking-tighter">Nativo</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm font-bold text-stone-800">Inglês</span>
-                            <span class="text-[10px] text-stone-400 font-bold uppercase tracking-tighter">Básico</span>
+                            <span class="text-xs font-bold text-stone-800">Inglês</span>
+                            <span class="text-[9px] text-stone-400 font-bold uppercase tracking-tighter">Básico</span>
                         </div>
                     </div>
                 </section>
@@ -321,10 +324,9 @@
             </div>
         </div>
 
-        <!-- Footer Profissional -->
-        <footer class="p-8 bg-stone-50 border-t border-stone-100 text-center">
-            <p class="text-stone-400 text-[10px] uppercase tracking-widest mb-2">© 2026 Matheus Rodrigues da Fonseca</p>
-            <p class="text-stone-600 text-xs font-medium">Acesse o portfólio completo em: <span class="text-chef-gold italic">bit.ly/theuportfolio</span></p>
+        <!-- Footer -->
+        <footer class="p-4 bg-stone-50 border-t border-stone-100 text-center">
+            <p class="text-stone-400 text-[9px] uppercase tracking-widest">© 2026 Matheus Rodrigues da Fonseca • bit.ly/theuportfolio</p>
         </footer>
     </main>
 
