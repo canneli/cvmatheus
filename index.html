@@ -35,6 +35,7 @@
     </script>
 
     <style>
+        /* Configurações Globais */
         body {
             background-color: #0c0a09;
             color: #e7e5e4;
@@ -45,43 +46,76 @@
             background: #ffffff;
             color: #1c1917;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .gold-gradient-bg {
-            background: linear-gradient(135deg, #d4af37 0%, #fcd34d 100%);
+            transition: all 0.3s ease;
         }
 
         .section-divider {
-            border-bottom: 2px solid #e7e5e4;
+            border-bottom: 2px solid #f5f5f4;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
 
-        /* Timeline effects */
+        /* Linha do tempo */
         .timeline-line::before {
             content: '';
             position: absolute;
             left: 0.75rem;
-            top: 0;
-            bottom: 0;
+            top: 0.5rem;
+            bottom: 0.5rem;
             width: 2px;
-            background: #e7e5e4;
+            background: #f5f5f4;
         }
 
+        /* --- AJUSTES CRÍTICOS PARA PDF --- */
         @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; padding: 0 !important; }
-            .cv-paper { 
-                box-shadow: none !important; 
-                margin: 0 !important; 
-                width: 100% !important; 
-                max-width: 100% !important;
-                color: black !important;
+            @page {
+                size: A4;
+                margin: 0;
             }
-            .text-chef-gold { color: #8a6d1a !important; } /* Darker gold for print */
+            
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                /* Força o navegador a imprimir cores de fundo e imagens */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color: #1c1917 !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .cv-paper {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            /* Garante que o cabeçalho escuro apareça escuro no papel */
+            .bg-chef-dark {
+                background-color: #0c0a09 !important;
+                color: white !important;
+            }
+            .bg-chef-stone {
+                background-color: #1c1917 !important;
+                color: #d1d5db !important;
+            }
+            .text-chef-gold {
+                color: #d4af37 !important;
+            }
+            .bg-stone-50 {
+                background-color: #fafaf9 !important;
+            }
+            
+            /* Ajuste de links para não mostrar URL ao lado no print */
+            a::after { content: none !important; }
         }
 
-        /* Animations */
+        /* Animações apenas para visualização em tela */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -93,12 +127,12 @@
 
     <!-- Top Navigation Bar -->
     <div class="max-w-5xl mx-auto mb-8 flex justify-between items-center no-print animate-cv">
-        <a href="#" onclick="window.history.back()" class="flex items-center gap-2 text-stone-400 hover:text-chef-gold transition-colors font-medium">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Blog
-        </a>
+        <button onclick="window.history.back()" class="flex items-center gap-2 text-stone-400 hover:text-chef-gold transition-colors font-medium">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Portfólio
+        </button>
         <div class="flex gap-4">
-            <button onclick="window.print()" class="gold-gradient-bg text-chef-dark px-6 py-2.5 rounded-full font-bold shadow-lg hover:scale-105 transition-all flex items-center gap-2">
-                <i data-lucide="download" class="w-4 h-4"></i> Salvar PDF
+            <button onclick="window.print()" class="bg-[#d4af37] text-chef-dark px-6 py-2.5 rounded-full font-bold shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                <i data-lucide="printer" class="w-4 h-4"></i> Imprimir / PDF
             </button>
         </div>
     </div>
@@ -120,34 +154,34 @@
                 </p>
             </div>
             
-            <!-- Contact Sidebar on Header -->
+            <!-- Sidebar de Contato (Escura para manter o visual premium) -->
             <div class="p-8 md:p-12 bg-chef-stone text-stone-300 flex flex-col justify-center gap-4 text-sm border-l border-white/5">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
                         <i data-lucide="map-pin" class="w-4 h-4"></i>
                     </div>
                     <span>Belo Horizonte, MG</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
                         <i data-lucide="mail" class="w-4 h-4"></i>
                     </div>
                     <span>rmatheusfonseca@gmail.com</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
                         <i data-lucide="phone" class="w-4 h-4"></i>
                     </div>
                     <span>(31) 99715-0746</span>
                 </div>
-                <a href="https://bit.ly/theuportfolio" target="_blank" class="flex items-center gap-3 hover:text-chef-gold transition-colors">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                <a href="https://bit.ly/theuportfolio" target="_blank" class="flex items-center gap-3 hover:text-chef-gold transition-colors group">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold group-hover:bg-chef-gold/20 transition-all">
                         <i data-lucide="globe" class="w-4 h-4"></i>
                     </div>
                     <span>bit.ly/theuportfolio</span>
                 </a>
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-chef-gold/20 flex items-center justify-center text-chef-gold">
+                    <div class="w-8 h-8 rounded-full bg-chef-gold/10 flex items-center justify-center text-chef-gold">
                         <i data-lucide="instagram" class="w-4 h-4"></i>
                     </div>
                     <span>@cheftheu</span>
@@ -157,10 +191,9 @@
 
         <div class="grid grid-cols-1 md:grid-cols-12">
             
-            <!-- Left Column: Experience -->
+            <!-- Coluna Principal (Experiências) -->
             <div class="md:col-span-8 p-8 md:p-12 border-r border-stone-100">
                 
-                <!-- Summary -->
                 <section class="mb-12">
                     <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Perfil Profissional</h2>
                     <p class="text-stone-600 leading-relaxed text-justify">
@@ -168,18 +201,17 @@
                     </p>
                 </section>
 
-                <!-- Experience -->
                 <section>
                     <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Trajetória Profissional</h2>
                     
                     <div class="space-y-10 timeline-line relative pl-10">
                         
-                        <!-- Item 1 -->
+                        <!-- Pastaio -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-chef-gold border-4 border-white z-10"></div>
+                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-chef-gold border-4 border-white z-10"></div>
                             <div class="flex justify-between items-start mb-1">
                                 <h3 class="text-xl font-bold text-stone-900">Pastaio</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2023 - Presente</span>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2025</span>
                             </div>
                             <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Cozinheiro Estagiário (Especialista em Massas)</p>
                             <p class="text-stone-600 text-sm leading-relaxed">
@@ -187,12 +219,12 @@
                             </p>
                         </div>
 
-                        <!-- Item 2 -->
+                        <!-- Rex -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
                             <div class="flex justify-between items-start mb-1">
                                 <h3 class="text-xl font-bold text-stone-900">Rex Bibendi</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2023</span>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2025</span>
                             </div>
                             <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Cozinheiro (Praça Quente)</p>
                             <p class="text-stone-600 text-sm leading-relaxed">
@@ -200,29 +232,29 @@
                             </p>
                         </div>
 
-                        <!-- Item 3 -->
+                        <!-- Coco Bambu -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
                             <div class="flex justify-between items-start mb-1">
                                 <h3 class="text-xl font-bold text-stone-900">Coco Bambu</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2022</span>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2024</span>
                             </div>
                             <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Auxiliar de Cozinha</p>
                             <p class="text-stone-600 text-sm leading-relaxed">
-                                Operação em cozinha de alto volume. Especialização em preparo e limpeza de frutos do mar, garantindo a padronização de pratos para grandes fluxos.
+                                Operação em cozinha de alto volume. Especialização em preparo e limpeza de frutos do mar, garantindo a padronização de pratos para grandes fluxos de clientes.
                             </p>
                         </div>
 
-                        <!-- Item 4 -->
+                        <!-- Sorvetes Recreio -->
                         <div class="relative">
-                            <div class="absolute -left-[2.35rem] top-1 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
+                            <div class="absolute -left-[2.35rem] top-1.5 w-4 h-4 rounded-full bg-stone-200 border-4 border-white z-10"></div>
                             <div class="flex justify-between items-start mb-1">
                                 <h3 class="text-xl font-bold text-stone-900">Sorvetes Recreio</h3>
-                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2017 - 2022</span>
+                                <span class="text-[10px] font-bold bg-stone-100 px-2 py-1 rounded-full text-stone-500 uppercase">2023</span>
                             </div>
                             <p class="text-chef-gold font-bold text-sm uppercase tracking-wider mb-2">Gestão Operacional & Atendimento</p>
                             <p class="text-stone-600 text-sm leading-relaxed">
-                                Cinco anos dedicados à excelência no atendimento, gestão de caixa e organização logística do estabelecimento.
+                                Foco na excelência no atendimento ao cliente, gestão de caixa, controle de estoque e organização operacional.
                             </p>
                         </div>
 
@@ -230,66 +262,58 @@
                 </section>
             </div>
 
-            <!-- Right Column: Skills & Education -->
+            <!-- Coluna Lateral (Habilidades e Formação) -->
             <div class="md:col-span-4 p-8 md:p-12 bg-stone-50">
                 
-                <!-- Education -->
                 <section class="mb-12">
                     <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Educação</h2>
                     <div>
-                        <h3 class="font-bold text-stone-900">Graduação em Gastronomia</h3>
-                        <p class="text-sm text-stone-500">Centro Universitário UNA</p>
-                        <p class="text-xs font-bold text-chef-gold mt-1 uppercase tracking-tighter">Previsão de Conclusão: 2025</p>
+                        <h3 class="font-bold text-stone-900 leading-tight">Graduação em Gastronomia</h3>
+                        <p class="text-sm text-stone-500 mt-1">Centro Universitário UNA</p>
+                        <p class="text-xs font-bold text-chef-gold mt-2 uppercase">Conclusão: 2026</p>
                     </div>
                 </section>
 
-                <!-- Technical Skills -->
                 <section class="mb-12">
                     <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Arsenal Técnico</h2>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Massas Frescas</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Cozinha Quente</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Mise en Place</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Frutos do Mar</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Higiene & Segurança</span>
-                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-xs font-bold rounded shadow-sm">Panificação</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Massas Frescas</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Cozinha Quente</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Mise en Place</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Frutos do Mar</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Segurança Alimentar</span>
+                        <span class="px-3 py-1 bg-white border border-stone-200 text-stone-600 text-[10px] font-bold uppercase rounded shadow-sm">Panificação</span>
                     </div>
                 </section>
 
-                <!-- Soft Skills -->
                 <section class="mb-12">
                     <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Diferenciais</h2>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-sm text-stone-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
-                            Trabalho sob pressão
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-xs text-stone-600 font-medium">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold flex-shrink-0"></i>
+                            Agilidade em ambientes de alta pressão
                         </li>
-                        <li class="flex items-center gap-3 text-sm text-stone-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
-                            Foco em padronização
+                        <li class="flex items-start gap-3 text-xs text-stone-600 font-medium">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold flex-shrink-0"></i>
+                            Rigoroso controle de padronização
                         </li>
-                        <li class="flex items-center gap-3 text-sm text-stone-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
-                            Agilidade e ritmo
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-stone-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold"></i>
-                            Espírito de equipa
+                        <li class="flex items-start gap-3 text-xs text-stone-600 font-medium">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-chef-gold flex-shrink-0"></i>
+                            Organização técnica (Mise en Place)
                         </li>
                     </ul>
                 </section>
 
-                <!-- Languages -->
                 <section>
                     <h2 class="section-divider font-display text-xs font-bold uppercase tracking-[0.2em] text-stone-400">Idiomas</h2>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold text-stone-800">Português</span>
-                            <span class="text-[10px] text-chef-gold font-bold uppercase">Nativo</span>
+                            <span class="text-[10px] text-chef-gold font-bold uppercase tracking-tighter">Nativo</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold text-stone-800">Inglês</span>
-                            <span class="text-[10px] text-stone-400 font-bold uppercase">Básico</span>
+                            <span class="text-[10px] text-stone-400 font-bold uppercase tracking-tighter">Básico</span>
                         </div>
                     </div>
                 </section>
@@ -297,9 +321,10 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="p-8 md:p-12 text-center border-t border-stone-100 text-stone-400 text-[10px] uppercase tracking-widest">
-            © 2025 Matheus Rodrigues da Fonseca • <a href="https://bit.ly/theuportfolio" target="_blank" class="hover:text-chef-gold transition-colors">bit.ly/theuportfolio</a> • Disponível para novas oportunidades gastronómicas.
+        <!-- Footer Profissional -->
+        <footer class="p-8 bg-stone-50 border-t border-stone-100 text-center">
+            <p class="text-stone-400 text-[10px] uppercase tracking-widest mb-2">© 2026 Matheus Rodrigues da Fonseca</p>
+            <p class="text-stone-600 text-xs font-medium">Acesse o portfólio completo em: <span class="text-chef-gold italic">bit.ly/theuportfolio</span></p>
         </footer>
     </main>
 
